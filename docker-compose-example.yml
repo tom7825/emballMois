@@ -1,0 +1,36 @@
+services:
+  mysql:
+    image: mysql:8.0
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-emballmois-mysql:/var/lib/mysql
+      - ./init-sql:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    image: emballmois-backend:${EMBALLMOIS_BACK_VERSION}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  frontend:
+    image: emballmois-frontend:${EMBALLMOIS_FRONT_VERSION}
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+    restart: unless-stopped
+
+volumes:
+  db-emballmois-mysql: {}

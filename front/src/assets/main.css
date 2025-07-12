@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app {
+  font-weight: normal;
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+@layer utilities {
+  .min-h-calc {
+    min-height: calc(100vh - 280px);
+  }
+}
+
+.style-modal {
+  @apply px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 shadow-sm;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  /* Ajoute du padding pour petits écrans */
+  z-index: 100;
+}
+
+.modal {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 700px;
+  width: fit-content;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+button {
+  margin-top: 10px;
+}

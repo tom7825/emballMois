@@ -1,0 +1,12 @@
+Excel/*
+
+init-sql/*
+
+.env
+docker-compose.yml
+
+.idea
+.vscode/*
+
+
+
